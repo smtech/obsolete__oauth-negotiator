@@ -1,0 +1,14 @@
+{
+    "name": "smtech/oauth-negotiator",
+    "description": "Negotiate an OAuth 2 authentication or API token",
+    "authors": [
+        {
+            "name": "Seth Battis",
+            "email": "sethbattis@stmarksschool.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+	    "educoder/pest": "dev-master"
+    }
+}
