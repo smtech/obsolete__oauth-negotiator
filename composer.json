@@ -9,6 +9,6 @@
     ],
     "minimum-stability": "dev",
     "require": {
-	    "educoder/pest": "dev-master"
+	    "smtech/canvaspest": "dev-master"
     }
 }
