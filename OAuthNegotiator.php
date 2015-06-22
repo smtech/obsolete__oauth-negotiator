@@ -3,8 +3,8 @@
 class OAuthNegotiator {
 
 	const STATE = 'state';
-		const DEFAULT_SCOPE = 0;
-		const API_TOKEN = self::DEFAULT_SCOPE;
+		const API_TOKEN = 0;
+		const DEFAULT_SCOPE = self::API_TOKEN;
 		const IDENTITY_TOKEN = '/auth/userinfo/';
 		const CODE_REQUESTED = 'CODE_REQUESTED';
 		const CODE_PROVIDED = 'CODE_PROVIDED';
@@ -60,12 +60,23 @@ class OAuthNegotiator {
 	 * @throws OAuthNegotiator_Exception STATE_MISMATCH if $_REQUEST[state] does not align with $_SESSION[SESSION][STATE]
 	 **/
 	public function __construct() {
-		session_start();
 		
-		if (isset($_REQUEST['state'])) {
-			switch ($_REQUEST[self::STATE]) {
-				case self::$SCOPES[self::API_TOKEN][self::CODE_PROVIDED]: {
-					if ($_SESSION[self::SESSION][self::STATE] === self::$SCOPES[self::API_TOKEN][self::CODE_REQUESTED]) {
+		/* start our session (if it has not already been started) */
+		switch (session_status()) {
+			case PHP_SESSION_DISABLED:
+				throw new OAuthNegotiator_Exception(
+					'Cannot negotiate for OAuth authentication without sessions',
+					OAuthNegotiator_Exception::SESSION_STATUS
+				);
+				break;
+			case PHP_SESSION_NONE:
+				session_start();
+		}
+				
+		if (isset($_SESSION[self::SESSION][self::STATE])) {
+			switch ($_SESSION[self::SESSION][self::STATE]) {
+				case self::$SCOPES[self::API_TOKEN][self::CODE_REQUESTED]: {
+					if ($_REQUEST[self::STATE] === self::$SCOPES[self::API_TOKEN][self::CODE_PROVIDED]) {
 						call_user_func_array(array($this, 'constructAPIToken'), func_get_args());
 					} else {
 						throw new OAuthNegotiator_Exception(
@@ -75,8 +86,8 @@ class OAuthNegotiator {
 					}
 					break;
 				}
-				case self::$SCOPES[self::IDENTITY_TOKEN][self::CODE_PROVIDED]: {
-					if ($_SESSION[self::SESSION][self::STATE] === self::$SCOPES[self::IDENTITY_TOKEN][self::CODE_REQUESTED]) {
+				case self::$SCOPES[self::IDENTITY_TOKEN][self::CODE_REQUESTED]: {
+					if ($_REQUEST[self::STATE] === self::$SCOPES[self::IDENTITY_TOKEN][self::CODE_PROVIDED]) {
 						call_user_func_array(array($this, 'constructIdentityToken'), func_get_args());
 					} else {
 						throw new OAuthNegotiator_Exception(
@@ -85,26 +96,9 @@ class OAuthNegotiator {
 						);
 					}
 				}
-				case self::NEGOTIATION_COMPLETE: {
-					if ($_SESSION[self::SESSION][self::STATE] === self::NEGOTIATION_COMPLETE) {
-						$this->constructNegotiationReporter($_REQUEST[self::STATE]);
-					} else {
-						throw new OAuthNegotiator_Exception(
-							"State mismatch (received '{$_REQUEST['state']}', expected '" . self::$SCOPES[self::IDENTITY_TOKEN][self::CODE_REQUESTED] . ')',
-							OAuthNegotiator_Exception::STATE_MISMATCH
-						);
-					}
-					break;
-				}
+				case self::NEGOTIATION_COMPLETE:
 				case self::NEGOTIATION_FAILED: {
-					if ($_SESSION[self::SESSION][self::STATE] === self::NEGOTIATION_FAILED) {
-						$this->constructNegotiationReporter($_REQUEST[self::STATE]);
-					} else {
-						throw new OAuthNegotiator_Exception(
-							"State mismatch (received '{$_REQUEST['state']}', expected '" . self::$SCOPES[self::IDENTITY_TOKEN][self::CODE_REQUESTED] . ')',
-							OAuthNegotiator_Exception::STATE_MISMATCH
-						);
-					}
+					$this->constructNegotiationReporter($_SESSION[self::SESSION][self::STATE]);
 					break;
 				}
 			}		
@@ -130,20 +124,7 @@ class OAuthNegotiator {
 	 * @throws OAuthNegotiator_Exception CLIENT_SECRET if $clientSecrete is  empty or not provided
 	 **/
 	protected function constructStateless($OAuthEndpoint, $clientId, $clientSecret, $landingPage = false, $purpose = null, $APIEndpoint = false, $scopes = self::DEFAULT_SCOPE, $responseType = 'code', $redirectURI = null) {
-		switch (session_status()) {
-			case PHP_SESSION_DISABLED:
-				throw new OAuthNegotiator_Exception(
-					'Cannot negotiate for OAuth authentication without sessions',
-					OAuthNegotiator_Exception::SESSION_STATUS
-				);
-				break;
-			case PHP_SESSION_NONE:
-				session_start();
-			case PHP_SESSION_ACTIVE:
-			default:
-				/* we've already got a session! */
-		}
-		
+
 		if (isset($OAuthEndpoint) && !empty($OAuthEndpoint)) {
 			$_SESSION[self::SESSION][self::OAUTH_ENDPOINT] = $OAuthEndpoint;
 		} else {
@@ -233,7 +214,7 @@ class OAuthNegotiator {
 	protected function constructAPIToken() {
 		if (isset($_REQUEST[self::CODE])) {
 			$this->requestToken($_REQUEST[self::CODE], self::API_TOKEN);
-			$api = new CanvasPest($_SESSION[self::SESSION][self::API_ENDPOINT], $_SESSION[self::SESSION][self::API_TOKEN][self::TOKEN]);
+			$api = new CanvasPest($_SESSION[self::SESSION][self::API_ENDPOINT], $_SESSION[self::SESSION][self::TOKEN]);
 			if ($response = $api->get('/users/self/profile')) {
 				$_SESSION[self::SESSION][self::USER] = $response;
 			} else {
@@ -265,23 +246,14 @@ class OAuthNegotiator {
 	 * @param string $state State of the OAuthNegotiations (NEGOTIATION_COMPLETE|NEGOTIATION_FAILED)
 	 *
 	 * @return void
-	 *
-	 * @throws OAuthNegotiator_Exception STATE_MISMATCH if $state does not match $_SESSION[SESSION][STATE] or is not one of the specified states
 	 **/
 	protected function constructNegotiationReporter($state = self::NEGOTIATION_COMPLETE) {
-		if ($state === $_SESSION[self::SESSION][self::STATE] && ($state === self::NEGOTIATION_COMPLETE || $state === self::NEGOTIATION_FAILED)) {
-			$this->ready = true;
-			$this->token = $_SESSION[self::SESSION][self::TOKEN];
-			$this->user = $_SESSION[self::SESSION][self::USER];
-			$this->error = $_SESSION[self::SESSION][self::ERROR];
-			unset($_SESSION[self::SESSION]);
-			$_SESSION[self::SESSION][self::STATE] = $state;
-		} else {
-			throw new OAuthNegotiator_Exception(
-				"Invalid state",
-				OAuthNegotiator_Exception::STATE_MISMATCH
-			);
-		}
+		$this->ready = true;
+		$this->token = $_SESSION[self::SESSION][self::TOKEN];
+		$this->user = $_SESSION[self::SESSION][self::USER];
+		$this->error = $_SESSION[self::SESSION][self::ERROR];
+		unset($_SESSION[self::SESSION]);
+		$_SESSION[self::SESSION][self::STATE] = $state;
 	}
 	
 	/**
@@ -351,17 +323,32 @@ class OAuthNegotiator {
 	 **/
 	protected function requestAuthorizationCode($responseType, $scopes, $purpose) {
 		$_SESSION[self::SESSION][self::STATE] = self::$SCOPES[$scopes][self::CODE_REQUESTED];
-		header(
-			"Location: {$_SESSION[self::SESSION][self::OAUTH_ENDPOINT]}/auth?" . http_build_query(
-				array(
-					self::CLIENT_ID => $_SESSION[self::SESSION][self::CLIENT_ID],
-					self::RESPONSE_TYPE => $responseType,
-					self::REDIRECT_URI => $_SESSION[self::SESSION][self::REDIRECT_URI],
-					self::STATE => self::$SCOPES[$scopes][self::CODE_PROVIDED],
-					self::PURPOSE => $purpose
+		if ($scopes === IDENTITY_TOKEN) {
+			header(
+				"Location: {$_SESSION[self::SESSION][self::OAUTH_ENDPOINT]}/auth?" . http_build_query(
+					array(
+						self::CLIENT_ID => $_SESSION[self::SESSION][self::CLIENT_ID],
+						self::RESPONSE_TYPE => $responseType,
+						self::REDIRECT_URI => $_SESSION[self::SESSION][self::REDIRECT_URI],
+						self::STATE => self::$SCOPES[$scopes][self::CODE_PROVIDED],
+						'scopes' => $scopes,
+						self::PURPOSE => $purpose
+					)
 				)
-			)
-		);
+			);
+		} else {
+			header(
+				"Location: {$_SESSION[self::SESSION][self::OAUTH_ENDPOINT]}/auth?" . http_build_query(
+					array(
+						self::CLIENT_ID => $_SESSION[self::SESSION][self::CLIENT_ID],
+						self::RESPONSE_TYPE => $responseType,
+						self::REDIRECT_URI => $_SESSION[self::SESSION][self::REDIRECT_URI],
+						self::STATE => self::$SCOPES[$scopes][self::CODE_PROVIDED],
+						self::PURPOSE => $purpose
+					)
+				)
+			);
+		}
 		exit;
 	}
 	
