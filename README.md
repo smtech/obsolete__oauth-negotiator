@@ -57,7 +57,7 @@ negotiation on its own page and redirect in and out of that page.
   // get your token
   echo $oauth->getToken();
   
-  // get the user informatio associated with that token
+  // get the user information associated with that token
   print_r($oauth->getUser());
 ?>
 ```
