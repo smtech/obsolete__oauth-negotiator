@@ -58,31 +58,45 @@ class OAuthNegotiator {
 	/**
 	 * @var boolean $ready Is the token ready yet?
 	 **/
-	protected $ready = false;
+	private $ready = false;
 	
 	/**
 	 * @var string $token The token provided via OAuth
 	 **/
-	protected $token = null;
+	private $token = null;
 	
 	/**
 	 * @var array|null $user The user data associated with the API access token (no user for an identity token... go figure)
 	 **/
-	protected $user = null;
+	private $user = null;
 	
 	/**
 	 * @var string|null $error Any errors returned explaining why we might be "ready" but not have a token
 	 **/
-	protected $error = null;
+	private $error = null;
 
 	/**
 	 * Construct OAuthNegotiator to start (or continue) OAuth authentication negotiations
 	 *
+	 * @param string $OAuthEndpoint optional URI of the OAuth authentication endpoint (e.g. 'https://<canvas-install-url>/login/oauth2') -- REQUIRED on first instantiation
+	 * @param string $clientId optional A unique client ID for the application requesting authentication (usually some terrible hash or serial number) -- REQUIRED on first instantiation
+	 * @param string $clientSecret optional A shared secret key between this application and the OAuth server -- REQUIRED on first instantiation
+	 * @param string $landingPage optional URI to land at after OAuth is negotiated (defaults to $_SERVER[PHP_SELF])
+	 * @param string $purpose optional How this authentication token will be used (defaults to $_SERVER[PHP_SELF])
+	 * @param string $APIEndpoint optional URI of the API endpoint (e.g. 'https://<canvas-install-url>/api/vi', defaults to str_replace('/login/oauth2', '/api/v1', $OAuthEndpoint))
+	 * @param string $scopes optional The scope of this authentication (defaults to API token request)
+	 * @param string $responseType optional Type of response expected from OAuth server (defaults to 'code')
+	 * @param string $redirectUri optional URI to handle OAuth server response (defaults to $_SERVER[PHP_SELF])
+	 *
 	 * @return void
+	 *
+	 * @throws OAuthNegotiator_Exception OAUTH_ENDPOINT if $OAuthEndpoint is empty or not provided
+	 * @throws OAuthNegotiator_Exception CLIENT_ID if $clientId is empty or not provided
+	 * @throws OAuthNegotiator_Exception CLIENT_SECRET if $clientSecret is  empty or not provided
 	 *
 	 * @throws OAuthNegotiator_Exception STATE_MISMATCH if $_REQUEST[state] does not align with $_SESSION[SESSION][STATE]
 	 **/
-	public function __construct() {
+	public function __construct($OAuthEndpoint, $clientId, $clientSecret, $landingPage = false, $purpose = null, $APIEndpoint = false, $scopes = self::DEFAULT_SCOPE, $responseType = 'code', $redirectURI = null) {
 		
 		/* start our session (if it has not already been started) */
 		switch (session_status()) {
@@ -131,6 +145,7 @@ class OAuthNegotiator {
 	}
 
 	/**
+	 * Construct a "stateless" (i.e. unstarted) OAuthNegotiator
 	 *
 	 * @param string $OAuthEndpoint URI of the OAuth authentication endpoint (e.g. 'https://<canvas-install-url>/login/oauth2')
 	 * @param string $clientId A unique client ID for the application requesting authentication (usually some terrible hash or serial number)
@@ -144,9 +159,9 @@ class OAuthNegotiator {
 	 *
 	 * @throws OAuthNegotiator_Exception OAUTH_ENDPOINT if $OAuthEndpoint is empty or not provided
 	 * @throws OAuthNegotiator_Exception CLIENT_ID if $clientId is empty or not provided
-	 * @throws OAuthNegotiator_Exception CLIENT_SECRET if $clientSecrete is  empty or not provided
+	 * @throws OAuthNegotiator_Exception CLIENT_SECRET if $clientSecret is  empty or not provided
 	 **/
-	protected function constructStateless($OAuthEndpoint, $clientId, $clientSecret, $landingPage = false, $purpose = null, $APIEndpoint = false, $scopes = self::DEFAULT_SCOPE, $responseType = 'code', $redirectURI = null) {
+	private function constructStateless($OAuthEndpoint, $clientId, $clientSecret, $landingPage = false, $purpose = null, $APIEndpoint = false, $scopes = self::DEFAULT_SCOPE, $responseType = 'code', $redirectURI = null) {
 
 		if (isset($OAuthEndpoint) && !empty($OAuthEndpoint)) {
 			$_SESSION[self::SESSION][self::OAUTH_ENDPOINT] = $OAuthEndpoint;
@@ -207,7 +222,7 @@ class OAuthNegotiator {
 	 *
 	 * @throws OAuthNegotiator_Exception CODE_RESPONSE if the prior request for an authorization token resulted in neither an authorization code or an erro (weird!)
 	 **/
-	protected function constructIdentityToken($redirectURI) {
+	private function constructIdentityToken() {
 		if (isset($_REQUEST[self::CODE])) {
 			$this->requestToken($_REQUEST[self::CODE], self::IDENTITY_TOKEN);
 			$_SESSION[self::SESSION][self::STATE] = self::NEGOTIATION_COMPLETE;
@@ -231,10 +246,10 @@ class OAuthNegotiator {
 	 *
 	 * @return void
 	 *
-	 * @throws OAuthNegotiator_Exception CODE_RESPONSE if the prior request for an authorization token resulted in neither an authorization code or an erro (weird!)
+	 * @throws OAuthNegotiator_Exception CODE_RESPONSE if the prior request for an authorization token resulted in neither an authorization code or an error (weird!)
 	 * @throws OAuthNegotatior_Exception USER_RESPONSE if a user profile cannot be acquired to match the API access token (i.e. the OAuth server is probably not a Canvas instance)
 	 **/
-	protected function constructAPIToken() {
+	private function constructAPIToken() {
 		if (isset($_REQUEST[self::CODE])) {
 			$this->requestToken($_REQUEST[self::CODE], self::API_TOKEN);
 			$api = new CanvasPest($_SESSION[self::SESSION][self::API_ENDPOINT], $_SESSION[self::SESSION][self::TOKEN]);
@@ -266,17 +281,33 @@ class OAuthNegotiator {
 	/**
 	 * Prepare to report on the results of the OAuth negotiation
 	 *
-	 * @param string $state State of the OAuthNegotiations (NEGOTIATION_COMPLETE|NEGOTIATION_FAILED)
-	 *
 	 * @return void
 	 **/
-	protected function constructNegotiationReporter($state = self::NEGOTIATION_COMPLETE) {
-		$this->ready = true;
-		$this->token = (isset($_SESSION[self::SESSION][self::TOKEN]) ? $_SESSION[self::SESSION][self::TOKEN] : null);
-		$this->user = (isset($_SESSION[self::SESSION][self::USER]) ? $_SESSION[self::SESSION][self::USER] : null);
-		$this->error = (isset($_SESSION[self::SESSION][self::ERROR]) ? $_SESSION[self::SESSION][self::ERROR] : null);
-		unset($_SESSION[self::SESSION]);
-		$_SESSION[self::SESSION][self::STATE] = $state;
+	private function constructNegotiationReporter() {
+		switch ($_SESSION[self::SESSION][self::STATE]) {
+			case self::NEGOTIATION_COMPLETE:
+			case self::NEGOTIATION_FAILED: {
+				$this->ready = true;
+				$this->token = (isset($_SESSION[self::SESSION][self::TOKEN]) ? $_SESSION[self::SESSION][self::TOKEN] : null);
+				$this->user = (isset($_SESSION[self::SESSION][self::USER]) ? $_SESSION[self::SESSION][self::USER] : null);
+				$this->error = (isset($_SESSION[self::SESSION][self::ERROR]) ? $_SESSION[self::SESSION][self::ERROR] : null);
+				unset($_SESSION[self::SESSION]);
+				$_SESSION[self::SESSION][self::STATE] = $state;
+				break;
+			}
+			default: {
+				$this->ready = false;
+			}
+		}
+	}
+	
+	/**
+	 * Is the OAuth negotiation complete?
+	 *
+	 * @return boolean TRUE if negotiations have finished, FALSE if they are ongoing
+	 **/
+	public function isReady() {
+		return $this->ready;
 	}
 	
 	/**
@@ -302,7 +333,7 @@ class OAuthNegotiator {
 	}
 	
 	/**
-	 * @return string|boolean OAuth token (if any) if OAuth negotiation is complete (FALSE if ongoing)
+	 * @return string|boolean|null OAuth token (if any) if OAuth negotiation is complete (FALSE if ongoing)
 	 **/
 	public function getToken() {
 		if ($this->ready) {
@@ -313,7 +344,7 @@ class OAuthNegotiator {
 	}
 	
 	/**
-	 * @return array|boolean Associative array (if any) of user profile if OAuth negotiation is complete (FALSE if onging)
+	 * @return array|boolean|null Associative array (if any) of user profile if OAuth negotiation is complete (FALSE if onging)
 	 **/
 	public function getUser() {
 		if ($this->ready) {
@@ -324,7 +355,7 @@ class OAuthNegotiator {
 	}
 	
 	/**
-	 * @return string|boolean Error (if any) that ended the OAuth negotiation (FALSE if negotiation is ongoing)
+	 * @return string|boolean|null Error (if any) that ended the OAuth negotiation (FALSE if negotiation is ongoing)
 	 **/
 	public function getError() {
 		if ($this->ready) {
@@ -343,7 +374,7 @@ class OAuthNegotiator {
 	 *
 	 * @return void
 	 **/
-	protected function requestAuthorizationCode($responseType, $scopes, $purpose) {
+	private function requestAuthorizationCode($responseType, $scopes, $purpose) {
 		$_SESSION[self::SESSION][self::STATE] = self::$SCOPES[$scopes][self::CODE_REQUESTED];
 		if ($scopes === self::IDENTITY_TOKEN) {
 			header(
@@ -377,7 +408,6 @@ class OAuthNegotiator {
 	/**
 	 * Request a token from the OAuth server
 	 *
-	 * @param string $redirectUri URI to handle OAuth server response, must be identical to the redirect URI provided when requesting the code
 	 * @param string $code An authorization code provided by the OAuth server
 	 * @param string $tokenType Type of token being requested (IDENTITY_TOKEN|API_TOKEN)
 	 *
@@ -385,7 +415,7 @@ class OAuthNegotiator {
 	 *
 	 * @throws OAuthNegotiator_Exception TOKEN_RESPONSE if a token no token is received or on any other uanticipated response from the OAuth server
 	 **/
-	protected function requestToken($code, $tokenType) {
+	private function requestToken($code, $tokenType) {
 		$authApi = new PestJSON("{$_SESSION[self::SESSION][self::OAUTH_ENDPOINT]}");
 		try {
 			$response = $authApi->post('token',
