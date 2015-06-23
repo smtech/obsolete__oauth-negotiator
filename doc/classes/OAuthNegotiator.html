@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">9</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-247078482"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-247078482" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/OAuthNegotiator.html">OAuthNegotiator</a></li>
+                                                    <li class="class"><a href="../classes/OAuthNegotiator_Exception.html">OAuthNegotiator_Exception</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>OAuthNegotiator</h1>
+                    <p><em>Conduct negotiations with Canvas for an OAuth token</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/OAuthNegotiator.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_isIdentityToken" class="">isIdentityToken()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_isAPIToken" class="">isAPIToken()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_getToken" class="">getToken()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_getUser" class="">getUser()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_getError" class="">getError()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_STATE" class="">STATE</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_API_TOKEN" class="">API_TOKEN</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_DEFAULT_SCOPE" class="">DEFAULT_SCOPE</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_IDENTITY_TOKEN" class="">IDENTITY_TOKEN</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_CODE_REQUESTED" class="">CODE_REQUESTED</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_CODE_PROVIDED" class="">CODE_PROVIDED</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_TOKEN_REQUESTED" class="">TOKEN_REQUESTED</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_TOKEN_PROVIDED" class="">TOKEN_PROVIDED</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_NEGOTIATION_COMPLETE" class="">NEGOTIATION_COMPLETE</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_NEGOTIATION_FAILED" class="">NEGOTIATION_FAILED</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_SESSION" class="">SESSION</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_OAUTH_ENDPOINT" class="">OAUTH_ENDPOINT</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_API_ENDPOINT" class="">API_ENDPOINT</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_CLIENT_ID" class="">CLIENT_ID</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_CLIENT_SECRET" class="">CLIENT_SECRET</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_CODE" class="">CODE</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_ERROR" class="">ERROR</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_RESPONSE_TYPE" class="">RESPONSE_TYPE</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_REDIRECT_URI" class="">REDIRECT_URI</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_SCOPES" class="">SCOPES</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_LANDING_PAGE" class="">LANDING_PAGE</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_PURPOSE" class="">PURPOSE</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_SCOPE" class="">SCOPE</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_IDENTITY" class="">IDENTITY</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_API" class="">API</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_TOKEN" class="">TOKEN</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_USER" class="">USER</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/OAuthNegotiator.html#method_constructStateless" class="">constructStateless()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_constructIdentityToken" class="">constructIdentityToken()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_constructAPIToken" class="">constructAPIToken()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_constructNegotiationReporter" class="">constructNegotiationReporter()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_requestAuthorizationCode" class="">requestAuthorizationCode()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_requestToken" class="">requestToken()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/OAuthNegotiator.html#property_ready" class="">$ready</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#property_token" class="">$token</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#property_user" class="">$user</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#property_error" class="">$error</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/OAuthNegotiator.html#property_SCOPES" class="">$SCOPES</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/OAuthNegotiator.html"><div class="path-wrapper">OAuthNegotiator.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\OAuthNegotiator</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Seth Battis <a href="mailto:SethBattis@stmarksschool.org">SethBattis@stmarksschool.org</a></p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATE" name="constant_STATE" class="anchor"></a>
+            <article id="constant_STATE" class="constant">
+                <h3 class="">STATE</h3>
+                <pre class="signature">STATE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_API_TOKEN" name="constant_API_TOKEN" class="anchor"></a>
+            <article id="constant_API_TOKEN" class="constant">
+                <h3 class="">API_TOKEN</h3>
+                <pre class="signature">API_TOKEN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_SCOPE" name="constant_DEFAULT_SCOPE" class="anchor"></a>
+            <article id="constant_DEFAULT_SCOPE" class="constant">
+                <h3 class="">DEFAULT_SCOPE</h3>
+                <pre class="signature">DEFAULT_SCOPE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IDENTITY_TOKEN" name="constant_IDENTITY_TOKEN" class="anchor"></a>
+            <article id="constant_IDENTITY_TOKEN" class="constant">
+                <h3 class="">IDENTITY_TOKEN</h3>
+                <pre class="signature">IDENTITY_TOKEN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CODE_REQUESTED" name="constant_CODE_REQUESTED" class="anchor"></a>
+            <article id="constant_CODE_REQUESTED" class="constant">
+                <h3 class="">CODE_REQUESTED</h3>
+                <pre class="signature">CODE_REQUESTED</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CODE_PROVIDED" name="constant_CODE_PROVIDED" class="anchor"></a>
+            <article id="constant_CODE_PROVIDED" class="constant">
+                <h3 class="">CODE_PROVIDED</h3>
+                <pre class="signature">CODE_PROVIDED</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TOKEN_REQUESTED" name="constant_TOKEN_REQUESTED" class="anchor"></a>
+            <article id="constant_TOKEN_REQUESTED" class="constant">
+                <h3 class="">TOKEN_REQUESTED</h3>
+                <pre class="signature">TOKEN_REQUESTED</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TOKEN_PROVIDED" name="constant_TOKEN_PROVIDED" class="anchor"></a>
+            <article id="constant_TOKEN_PROVIDED" class="constant">
+                <h3 class="">TOKEN_PROVIDED</h3>
+                <pre class="signature">TOKEN_PROVIDED</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NEGOTIATION_COMPLETE" name="constant_NEGOTIATION_COMPLETE" class="anchor"></a>
+            <article id="constant_NEGOTIATION_COMPLETE" class="constant">
+                <h3 class="">NEGOTIATION_COMPLETE</h3>
+                <pre class="signature">NEGOTIATION_COMPLETE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_NEGOTIATION_FAILED" name="constant_NEGOTIATION_FAILED" class="anchor"></a>
+            <article id="constant_NEGOTIATION_FAILED" class="constant">
+                <h3 class="">NEGOTIATION_FAILED</h3>
+                <pre class="signature">NEGOTIATION_FAILED</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SESSION" name="constant_SESSION" class="anchor"></a>
+            <article id="constant_SESSION" class="constant">
+                <h3 class="">SESSION</h3>
+                <pre class="signature">SESSION</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_OAUTH_ENDPOINT" name="constant_OAUTH_ENDPOINT" class="anchor"></a>
+            <article id="constant_OAUTH_ENDPOINT" class="constant">
+                <h3 class="">OAUTH_ENDPOINT</h3>
+                <pre class="signature">OAUTH_ENDPOINT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_API_ENDPOINT" name="constant_API_ENDPOINT" class="anchor"></a>
+            <article id="constant_API_ENDPOINT" class="constant">
+                <h3 class="">API_ENDPOINT</h3>
+                <pre class="signature">API_ENDPOINT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLIENT_ID" name="constant_CLIENT_ID" class="anchor"></a>
+            <article id="constant_CLIENT_ID" class="constant">
+                <h3 class="">CLIENT_ID</h3>
+                <pre class="signature">CLIENT_ID</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CLIENT_SECRET" name="constant_CLIENT_SECRET" class="anchor"></a>
+            <article id="constant_CLIENT_SECRET" class="constant">
+                <h3 class="">CLIENT_SECRET</h3>
+                <pre class="signature">CLIENT_SECRET</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CODE" name="constant_CODE" class="anchor"></a>
+            <article id="constant_CODE" class="constant">
+                <h3 class="">CODE</h3>
+                <pre class="signature">CODE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_ERROR" name="constant_ERROR" class="anchor"></a>
+            <article id="constant_ERROR" class="constant">
+                <h3 class="">ERROR</h3>
+                <pre class="signature">ERROR</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RESPONSE_TYPE" name="constant_RESPONSE_TYPE" class="anchor"></a>
+            <article id="constant_RESPONSE_TYPE" class="constant">
+                <h3 class="">RESPONSE_TYPE</h3>
+                <pre class="signature">RESPONSE_TYPE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_REDIRECT_URI" name="constant_REDIRECT_URI" class="anchor"></a>
+            <article id="constant_REDIRECT_URI" class="constant">
+                <h3 class="">REDIRECT_URI</h3>
+                <pre class="signature">REDIRECT_URI</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SCOPES" name="constant_SCOPES" class="anchor"></a>
+            <article id="constant_SCOPES" class="constant">
+                <h3 class="">SCOPES</h3>
+                <pre class="signature">SCOPES</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LANDING_PAGE" name="constant_LANDING_PAGE" class="anchor"></a>
+            <article id="constant_LANDING_PAGE" class="constant">
+                <h3 class="">LANDING_PAGE</h3>
+                <pre class="signature">LANDING_PAGE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PURPOSE" name="constant_PURPOSE" class="anchor"></a>
+            <article id="constant_PURPOSE" class="constant">
+                <h3 class="">PURPOSE</h3>
+                <pre class="signature">PURPOSE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_SCOPE" name="constant_SCOPE" class="anchor"></a>
+            <article id="constant_SCOPE" class="constant">
+                <h3 class="">SCOPE</h3>
+                <pre class="signature">SCOPE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IDENTITY" name="constant_IDENTITY" class="anchor"></a>
+            <article id="constant_IDENTITY" class="constant">
+                <h3 class="">IDENTITY</h3>
+                <pre class="signature">IDENTITY</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_API" name="constant_API" class="anchor"></a>
+            <article id="constant_API" class="constant">
+                <h3 class="">API</h3>
+                <pre class="signature">API</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TOKEN" name="constant_TOKEN" class="anchor"></a>
+            <article id="constant_TOKEN" class="constant">
+                <h3 class="">TOKEN</h3>
+                <pre class="signature">TOKEN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_USER" name="constant_USER" class="anchor"></a>
+            <article id="constant_USER" class="constant">
+                <h3 class="">USER</h3>
+                <pre class="signature">USER</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ready" name="property_ready" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$ready</h3>
+                <pre class="signature">$ready : boolean</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                &mdash; Is the token ready yet?                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_token" name="property_token" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$token</h3>
+                <pre class="signature">$token : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; The token provided via OAuth                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_user" name="property_user" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$user</h3>
+                <pre class="signature">$user : array|null</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array|null
+                &mdash; The user data associated with the API access token (no user for an identity token... go figure)                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_error" name="property_error" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$error</h3>
+                <pre class="signature">$error : string|null</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string|null
+                &mdash; Any errors returned explaining why we might be &quot;ready&quot; but not have a token                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_SCOPES" name="property_SCOPES" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$SCOPES</h3>
+                <pre class="signature">$SCOPES : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() : void</pre>
+                <p><em>Construct OAuthNegotiator to start (or continue) OAuth authentication negotiations</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\OAuthNegotiator_Exception</dt>
+                            <dd><p>STATE_MISMATCH if $_REQUEST[state] does not align with $_SESSION[SESSION][STATE]</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isIdentityToken" name="method_isIdentityToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isIdentityToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isIdentityToken() : boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>TRUE if OAuth negoation is complete and resulted in an identy token (FALSE if negotiations are onging or the token is an API access token)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isAPIToken" name="method_isAPIToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isAPIToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isAPIToken() : boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>TRUE if OAuth negotation is complete and resulted in an API access token (FALSE if negotations are ongoing or the token is an identity token)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getToken" name="method_getToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getToken() : string|boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|boolean
+                                            &mdash; <p>OAuth token (if any) if OAuth negotiation is complete (FALSE if ongoing)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUser" name="method_getUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUser() : array|boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array|boolean
+                                            &mdash; <p>Associative array (if any) of user profile if OAuth negotiation is complete (FALSE if onging)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getError" name="method_getError" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getError()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getError() : string|boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|boolean
+                                            &mdash; <p>Error (if any) that ended the OAuth negotiation (FALSE if negotiation is ongoing)</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_constructStateless" name="method_constructStateless" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">constructStateless()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">constructStateless(string  <span class="argument">$OAuthEndpoint</span>, string  <span class="argument">$clientId</span>, string  <span class="argument">$clientSecret</span>, string  <span class="argument">$landingPage = false</span>, string  <span class="argument">$purpose = null</span>, string  <span class="argument">$APIEndpoint = false</span>, string  <span class="argument">$scopes = self::DEFAULT_SCOPE</span>, string  <span class="argument">$responseType = &#039;code&#039;</span>,   <span class="argument">$redirectURI = null</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$OAuthEndpoint </td>
+                                <td><p>URI of the OAuth authentication endpoint (e.g. 'https://<canvas-install-url>/login/oauth2')</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$clientId </td>
+                                <td><p>A unique client ID for the application requesting authentication (usually some terrible hash or serial number)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$clientSecret </td>
+                                <td><p>A shared secret key between this application and the OAuth server</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$landingPage </td>
+                                <td><p>optional URI to land at after OAuth is negotiated (defaults to $_SERVER[PHP_SELF])</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$purpose </td>
+                                <td><p>optional How this authentication token will be used (defaults to $_SERVER[PHP_SELF])</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$APIEndpoint </td>
+                                <td><p>optional URI of the API endpoint (e.g. 'https://<canvas-install-url>/api/vi', defaults to str_replace('/login/oauth2', '/api/v1', $OAuthEndpoint))</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$scopes </td>
+                                <td><p>optional The scope of this authentication (defaults to API token request)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$responseType </td>
+                                <td><p>optional Type of response expected from OAuth server (defaults to 'code')</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$redirectURI </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\OAuthNegotiator_Exception</dt>
+                            <dd><p>OAUTH_ENDPOINT if $OAuthEndpoint is empty or not provided</p></dd>
+                                                    <dt>\OAuthNegotiator_Exception</dt>
+                            <dd><p>CLIENT_ID if $clientId is empty or not provided</p></dd>
+                                                    <dt>\OAuthNegotiator_Exception</dt>
+                            <dd><p>CLIENT_SECRET if $clientSecrete is  empty or not provided</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_constructIdentityToken" name="method_constructIdentityToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">constructIdentityToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">constructIdentityToken(  <span class="argument">$redirectURI</span>) : void</pre>
+                <p><em>Construct an OAuthNegotiator to use an access code to request an identity token</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$redirectURI </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\OAuthNegotiator_Exception</dt>
+                            <dd><p>CODE_RESPONSE if the prior request for an authorization token resulted in neither an authorization code or an erro (weird!)</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_constructAPIToken" name="method_constructAPIToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">constructAPIToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">constructAPIToken() : void</pre>
+                <p><em>Construct an OAuthNegotiator to use an access code to request an API Token with matching user profile</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\OAuthNegotiator_Exception</dt>
+                            <dd><p>CODE_RESPONSE if the prior request for an authorization token resulted in neither an authorization code or an erro (weird!)</p></dd>
+                                                    <dt>\OAuthNegotatior_Exception</dt>
+                            <dd><p>USER_RESPONSE if a user profile cannot be acquired to match the API access token (i.e. the OAuth server is probably not a Canvas instance)</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_constructNegotiationReporter" name="method_constructNegotiationReporter" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">constructNegotiationReporter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">constructNegotiationReporter(string  <span class="argument">$state = self::NEGOTIATION_COMPLETE</span>) : void</pre>
+                <p><em>Prepare to report on the results of the OAuth negotiation</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$state </td>
+                                <td><p>State of the OAuthNegotiations (NEGOTIATION_COMPLETE|NEGOTIATION_FAILED)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_requestAuthorizationCode" name="method_requestAuthorizationCode" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">requestAuthorizationCode()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">requestAuthorizationCode(string  <span class="argument">$responseType</span>, string  <span class="argument">$scopes</span>, string  <span class="argument">$purpose</span>) : void</pre>
+                <p><em>Request an authorization code from the OAuth server</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$responseType </td>
+                                <td><p>Always 'code'</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$scopes </td>
+                                <td><p>The type of token for which we need an authorization code (IDENTITY_TOKEN|API_TOKEN)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$purpose </td>
+                                <td><p>User-readable description of the purpose for which this token will be used</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_requestToken" name="method_requestToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">requestToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">requestToken(string  <span class="argument">$code</span>, string  <span class="argument">$tokenType</span>) : void</pre>
+                <p><em>Request a token from the OAuth server</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$code </td>
+                                <td><p>An authorization code provided by the OAuth server</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$tokenType </td>
+                                <td><p>Type of token being requested (IDENTITY_TOKEN|API_TOKEN)</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\OAuthNegotiator_Exception</dt>
+                            <dd><p>TOKEN_RESPONSE if a token no token is received or on any other uanticipated response from the OAuth server</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">OAuthNegotiator.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/OAuthNegotiator.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on 
+Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in phar:///Users/sethbattis/Dropbox/Library/Scripts/phpdocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
+June 23rd, 2015 at 14:44.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
