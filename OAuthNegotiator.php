@@ -40,6 +40,7 @@ class OAuthNegotiator {
 		const ERROR = 'ERROR';
 		const RESPONSE_TYPE = 'response_type';
 		const REDIRECT_URI = 'redirect_uri';
+		const SCOPES = 'scopes';
 		const LANDING_PAGE = 'landing_page';
 		const PURPOSE = 'purpose';
 		const SCOPE = 'scope';
@@ -315,7 +316,6 @@ class OAuthNegotiator {
 	 * Request an authorization code from the OAuth server
 	 *
 	 * @param string $responseType Always 'code'
-	 * @param string $redirectUri URI to handle OAuth server response
 	 * @param string $scopes The type of token for which we need an authorization code (IDENTITY_TOKEN|API_TOKEN)
 	 * @param string $purpose User-readable description of the purpose for which this token will be used
 	 *
@@ -323,7 +323,7 @@ class OAuthNegotiator {
 	 **/
 	protected function requestAuthorizationCode($responseType, $scopes, $purpose) {
 		$_SESSION[self::SESSION][self::STATE] = self::$SCOPES[$scopes][self::CODE_REQUESTED];
-		if ($scopes === IDENTITY_TOKEN) {
+		if ($scopes === self::IDENTITY_TOKEN) {
 			header(
 				"Location: {$_SESSION[self::SESSION][self::OAUTH_ENDPOINT]}/auth?" . http_build_query(
 					array(
@@ -331,7 +331,7 @@ class OAuthNegotiator {
 						self::RESPONSE_TYPE => $responseType,
 						self::REDIRECT_URI => $_SESSION[self::SESSION][self::REDIRECT_URI],
 						self::STATE => self::$SCOPES[$scopes][self::CODE_PROVIDED],
-						'scopes' => $scopes,
+						self::SCOPES => $scopes,
 						self::PURPOSE => $purpose
 					)
 				)
