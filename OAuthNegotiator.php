@@ -250,9 +250,9 @@ class OAuthNegotiator {
 	 **/
 	protected function constructNegotiationReporter($state = self::NEGOTIATION_COMPLETE) {
 		$this->ready = true;
-		$this->token = $_SESSION[self::SESSION][self::TOKEN];
-		$this->user = $_SESSION[self::SESSION][self::USER];
-		$this->error = $_SESSION[self::SESSION][self::ERROR];
+		$this->token = (isset($_SESSION[self::SESSION][self::TOKEN]) ? $_SESSION[self::SESSION][self::TOKEN] : null);
+		$this->user = (isset($_SESSION[self::SESSION][self::USER]) ? $_SESSION[self::SESSION][self::USER] : null);
+		$this->error = (isset($_SESSION[self::SESSION][self::ERROR]) ? $_SESSION[self::SESSION][self::ERROR] : null);
 		unset($_SESSION[self::SESSION]);
 		$_SESSION[self::SESSION][self::STATE] = $state;
 	}
