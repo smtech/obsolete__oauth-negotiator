@@ -62,4 +62,4 @@ negotiation on its own page and redirect in and out of that page.
 ?>
 ```
 
-Complete documentation is [in the package online](https://htmlpreview.github.io?https://github.com/smtech/oauth-negotiator/blob/master/.gitignore).
+Complete documentation is [in the package online](https://htmlpreview.github.io?https://github.com/smtech/oauth-negotiator/blob/master/doc/index.html).
