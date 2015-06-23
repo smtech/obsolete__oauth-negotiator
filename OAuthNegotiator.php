@@ -203,7 +203,7 @@ class OAuthNegotiator {
 		}
 		
 		if (!isset($redirectURI)) {
-			$_SESSION[self::SESSION][self::REDIRECT_URI] = 'https://' . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'];
+			$_SESSION[self::SESSION][self::REDIRECT_URI] = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http://' : 'https://') . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'];
 		} else {
 			$_SESSION[self::SESSION][self::REDIRECT_URI] = $redirectURI;
 		}
