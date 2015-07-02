@@ -15,7 +15,7 @@ Include in your `composer.json` file:
 }
 ```
 
-When you would like to acquire a token, the easiest use of this is to provide three pages:
+When you would like to acquire a token, the easiest use of this is to provide three pages (keep reading for a single page variant):
 
 #### page1.php
 
@@ -60,6 +60,49 @@ negotiation on its own page and redirect in and out of that page.
   // get the user information associated with that token
   print_r($oauth->getUser());
 ?>
+```
+###Single Page Usage
+
+```PHP
+/* attempt to create a simple OAuthNegotiator for the intermediate steps in the workflow */
+try {
+	$oauth = new OAuthNegotiator();
+} catch (OAuthNegotiator_Exception $e) {}
+
+/* otherwise, check what step in the workflow we're at */
+if (isset($_REQUEST['oauth'])) {
+	switch ($_REQUEST['oauth']) {
+		case 'request': { // explain what's up to the user
+			echo '
+<html>
+	<body>
+		<h1>Token Request</h1>
+		<p>Explain why you're requesting a token.</p>
+		<p><a href="' . $_SERVER['PHP_SELF'] . '?oauth=process">Click to continue</a></p>
+	</body>
+</html>';
+			exit;
+		}
+		case 'process': { // start the negotiation process
+			$oauth = new OAuthNegotiator(
+				"https://canvas.instructure.com/login/oauth2", // replace with your OAuth provider endpoint
+				(string) $secrets->oauth->id,
+				(string) $secrets->oauth->key,
+				"{$_SERVER['PHP_SELF']}?oauth=complete",
+				(string) $secrets->app->name
+			);
+			break;
+		}
+		case 'complete': { // negotiation is complete
+			/* do something productive with your token */
+			$_SESSION['apiToken'] = $oauth->getToken();
+
+      /* on to the next page, token in hand! */
+			header("Location: ./next.php");
+			exit;
+		}
+	}
+}
 ```
 
 Complete documentation is [in the package online](https://htmlpreview.github.io?https://github.com/smtech/oauth-negotiator/blob/master/doc/index.html).
