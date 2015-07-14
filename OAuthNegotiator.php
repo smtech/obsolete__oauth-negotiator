@@ -39,7 +39,7 @@ class OAuthNegotiator {
 	
 	const SESSION = 'OAuthNegotiator';
 		const OAUTH_ENDPOINT = 'OAUTH_ENDPOINT';
-		const API_ENDPOINT = 'API_ENDPOINT';
+		const API_URL = 'API_URL';
 		const CLIENT_ID = 'client_id';
 		const CLIENT_SECRET = 'client_secret';
 		const CODE = 'code';
@@ -202,9 +202,9 @@ class OAuthNegotiator {
 		}
 		
 		if ($APIEndpoint === false) {
-			$_SESSION[self::SESSION][self::API_ENDPOINT] = str_replace('/login/oauth2', '/api/v1', $_SESSION[self::SESSION][self::OAUTH_ENDPOINT]);
+			$_SESSION[self::SESSION][self::API_URL] = str_replace('/login/oauth2', '/api/v1', $_SESSION[self::SESSION][self::OAUTH_ENDPOINT]);
 		} else {
-			$_SESSION[self::SESSION][self::API_ENDPOINT] = $APIEndpoint;
+			$_SESSION[self::SESSION][self::API_URL] = $APIEndpoint;
 		}
 		
 		if (!isset($redirectURI)) {
@@ -257,7 +257,7 @@ class OAuthNegotiator {
 	private function constructAPIToken() {
 		if (isset($_REQUEST[self::CODE])) {
 			$this->requestToken($_REQUEST[self::CODE], self::API_TOKEN);
-			$api = new CanvasPest($_SESSION[self::SESSION][self::API_ENDPOINT], $_SESSION[self::SESSION][self::TOKEN]);
+			$api = new CanvasPest($_SESSION[self::SESSION][self::API_URL], $_SESSION[self::SESSION][self::TOKEN]);
 			if ($response = $api->get('/users/self/profile')) {
 				$_SESSION[self::SESSION][self::USER] = $response;
 			} else {
@@ -293,7 +293,7 @@ class OAuthNegotiator {
 			case self::NEGOTIATION_COMPLETE:
 			case self::NEGOTIATION_FAILED: {
 				$this->ready = true;
-				$this->apiUrl = (isset($_SESSION[self::SESSION][self::API_ENDPOINT]) ? $_SESSION[self::SESSION][self::API_ENDPOINT] : null);
+				$this->apiUrl = (isset($_SESSION[self::SESSION][self::API_URL]) ? $_SESSION[self::SESSION][self::API_URL] : null);
 				$this->token = (isset($_SESSION[self::SESSION][self::TOKEN]) ? $_SESSION[self::SESSION][self::TOKEN] : null);
 				$this->user = (isset($_SESSION[self::SESSION][self::USER]) ? $_SESSION[self::SESSION][self::USER] : null);
 				$this->error = (isset($_SESSION[self::SESSION][self::ERROR]) ? $_SESSION[self::SESSION][self::ERROR] : null);
