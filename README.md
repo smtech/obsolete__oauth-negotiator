@@ -77,7 +77,7 @@ if (isset($_REQUEST['oauth'])) {
 <html>
 	<body>
 		<h1>Token Request</h1>
-		<p>Explain why you're requesting a token.</p>
+		<p>Explain why you&rsquo;re requesting a token.</p>
 		<p><a href="' . $_SERVER['PHP_SELF'] . '?oauth=process">Click to continue</a></p>
 	</body>
 </html>';
