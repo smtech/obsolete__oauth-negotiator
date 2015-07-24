@@ -1,6 +1,7 @@
 {
     "name": "smtech/oauth-negotiator",
     "description": "Negotiate an OAuth 2 authentication or API token",
+    "license": "LGPL-3.0",
     "authors": [
         {
             "name": "Seth Battis",
