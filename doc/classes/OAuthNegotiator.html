@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>API Documentation</title>
+    <title>OAuthNegotiator</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
@@ -83,7 +83,7 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <i class="icon-ellipsis-vertical"></i>
             </a>
-            <a class="brand" href="../index.html">API Documentation</a>
+            <a class="brand" href="../index.html">OAuthNegotiator</a>
 
             <div class="nav-collapse">
                 <ul class="nav pull-right">
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-382869226"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1582310872"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-382869226" class="accordion-body collapse in">
+            <div id="namespace-1582310872" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -187,8 +187,8 @@
                                                                     <a href="../classes/OAuthNegotiator.html#method_isReady" class="">isReady()</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#method_isIdentityToken" class="">isIdentityToken()</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#method_isAPIToken" class="">isAPIToken()</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#method_getApiUrl" class="">getApiUrl()</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#method_getToken" class="">getToken()</a><br />
-                                                                    <a href="../classes/OAuthNegotiator.html#method_getUser" class="">getUser()</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#method_getError" class="">getError()</a><br />
                                                             </section>
                             <section class="span4">
@@ -207,7 +207,7 @@
                                                                     <a href="../classes/OAuthNegotiator.html#constant_NEGOTIATION_FAILED" class="">NEGOTIATION_FAILED</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#constant_SESSION" class="">SESSION</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#constant_OAUTH_ENDPOINT" class="">OAUTH_ENDPOINT</a><br />
-                                                                    <a href="../classes/OAuthNegotiator.html#constant_API_ENDPOINT" class="">API_ENDPOINT</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_API_URL" class="">API_URL</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#constant_CLIENT_ID" class="">CLIENT_ID</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#constant_CLIENT_SECRET" class="">CLIENT_SECRET</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#constant_CODE" class="">CODE</a><br />
@@ -222,6 +222,7 @@
                                                                     <a href="../classes/OAuthNegotiator.html#constant_API" class="">API</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#constant_TOKEN" class="">TOKEN</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#constant_USER" class="">USER</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#constant_IS_API_TOKEN" class="">IS_API_TOKEN</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid protected">
@@ -247,8 +248,9 @@
                             <section class="span4">
                                                                     <a href="../classes/OAuthNegotiator.html#property_SCOPES" class="">$SCOPES</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#property_ready" class="">$ready</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#property_apiUrl" class="">$apiUrl</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#property_token" class="">$token</a><br />
-                                                                    <a href="../classes/OAuthNegotiator.html#property_user" class="">$user</a><br />
+                                                                    <a href="../classes/OAuthNegotiator.html#property_isApiToken" class="">$isApiToken</a><br />
                                                                     <a href="../classes/OAuthNegotiator.html#property_error" class="">$error</a><br />
                                                             </section>
                             <section class="span4">
@@ -559,10 +561,10 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="constant_API_ENDPOINT" name="constant_API_ENDPOINT" class="anchor"></a>
-            <article id="constant_API_ENDPOINT" class="constant">
-                <h3 class="">API_ENDPOINT</h3>
-                <pre class="signature">API_ENDPOINT</pre>
+            <a id="constant_API_URL" name="constant_API_URL" class="anchor"></a>
+            <article id="constant_API_URL" class="constant">
+                <h3 class="">API_URL</h3>
+                <pre class="signature">API_URL</pre>
                 <p><em></em></p>
                 
             </article>
@@ -872,6 +874,27 @@
         </aside>
     </div>
 
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IS_API_TOKEN" name="constant_IS_API_TOKEN" class="anchor"></a>
+            <article id="constant_IS_API_TOKEN" class="constant">
+                <h3 class="">IS_API_TOKEN</h3>
+                <pre class="signature">IS_API_TOKEN</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
                             
                                     <a id="properties" name="properties"></a>
             <div class="row-fluid">
@@ -931,6 +954,30 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
+            <a id="property_apiUrl" name="property_apiUrl" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$apiUrl</h3>
+                <pre class="signature">$apiUrl : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; The URL of the API                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
             <a id="property_token" name="property_token" class="anchor"></a>
             <article class="property">
                 <h3 class="private ">$token</h3>
@@ -955,16 +1002,16 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_user" name="property_user" class="anchor"></a>
+            <a id="property_isApiToken" name="property_isApiToken" class="anchor"></a>
             <article class="property">
-                <h3 class="private ">$user</h3>
-                <pre class="signature">$user : array|null</pre>
+                <h3 class="private ">$isApiToken</h3>
+                <pre class="signature">$isApiToken : boolean</pre>
                 <p><em></em></p>
                 
 
                                 <h4>Type</h4>
-                array|null
-                &mdash; The user data associated with the API access token (no user for an identity token... go figure)                            </article>
+                boolean
+                &mdash; The token provides authenticated access to the API                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
@@ -1182,11 +1229,11 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_getToken" name="method_getToken" class="anchor"></a>
+            <a id="method_getApiUrl" name="method_getApiUrl" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">getToken()</h3>
+                <h3 class="public ">getApiUrl()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getToken() : string|boolean|null</pre>
+                <pre class="signature" style="margin-right: 54px;">getApiUrl() : string|boolean|null</pre>
                 <p><em></em></p>
                 
 
@@ -1194,7 +1241,7 @@
                 
                                     <h4>Returns</h4>
                     string|boolean|null
-                                            &mdash; <p>OAuth token (if any) if OAuth negotiation is complete (FALSE if ongoing)</p>
+                                            &mdash; <p>URL of the API (if any) if OAuth negotiation is complete (FALSE if ongoing)</p>
                                     				
                             </article>
         </div>
@@ -1211,19 +1258,19 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_getUser" name="method_getUser" class="anchor"></a>
+            <a id="method_getToken" name="method_getToken" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">getUser()</h3>
+                <h3 class="public ">getToken()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getUser() : array|boolean|null</pre>
+                <pre class="signature" style="margin-right: 54px;">getToken() : string|boolean|null</pre>
                 <p><em></em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    array|boolean|null
-                                            &mdash; <p>Associative array (if any) of user profile if OAuth negotiation is complete (FALSE if onging)</p>
+                    string|boolean|null
+                                            &mdash; <p>OAuth token (if any) if OAuth negotiation is complete (FALSE if ongoing)</p>
                                     				
                             </article>
         </div>
@@ -1579,7 +1626,7 @@
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
                     on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in phar:///Users/sethbattis/Dropbox/Library/Scripts/phpdocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-June 23rd, 2015 at 15:14.
+July 30th, 2015 at 04:00.
                 </section>
             </section>
         </section>
