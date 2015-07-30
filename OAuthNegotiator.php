@@ -54,6 +54,7 @@ class OAuthNegotiator {
 		const API = 'API';
 		const TOKEN = 'TOKEN';
 		const USER = 'USER';
+		const IS_API_TOKEN = 'is_api_token';
 	
 	/**
 	 * @var boolean $ready Is the token ready yet?
@@ -70,10 +71,8 @@ class OAuthNegotiator {
 	 **/
 	private $token = null;
 	
-	/**
-	 * @var array|null $user The user data associated with the API access token (no user for an identity token... go figure)
-	 **/
-	private $user = null;
+	/** @var boolean The token provides authenticated access to the API */
+	private $isApiToken = false;
 	
 	/**
 	 * @var string|null $error Any errors returned explaining why we might be "ready" but not have a token
@@ -230,6 +229,7 @@ class OAuthNegotiator {
 	private function constructIdentityToken() {
 		if (isset($_REQUEST[self::CODE])) {
 			$this->requestToken($_REQUEST[self::CODE], self::IDENTITY_TOKEN);
+			$_SESSION[self::SESSION][self::IS_API_TOKEN] = false;
 			$_SESSION[self::SESSION][self::STATE] = self::NEGOTIATION_COMPLETE;
 			header("Location: {$_SESSION[self::SESSION][self::LANDING_PAGE]}");
 			exit;
@@ -257,15 +257,7 @@ class OAuthNegotiator {
 	private function constructAPIToken() {
 		if (isset($_REQUEST[self::CODE])) {
 			$this->requestToken($_REQUEST[self::CODE], self::API_TOKEN);
-			$api = new CanvasPest($_SESSION[self::SESSION][self::API_URL], $_SESSION[self::SESSION][self::TOKEN]);
-			if ($response = $api->get('/users/self/profile')) {
-				$_SESSION[self::SESSION][self::USER] = $response;
-			} else {
-				throw new OAuthNegotiator_Exception(
-					'Failed to get user profile',
-					OAuthNegotiator_Exception::USER_RESPONSE
-				);
-			}
+			$_SESSION[self::SESSION][self::IS_API_TOKEN] = true;
 			$_SESSION[self::SESSION][self::STATE] = self::NEGOTIATION_COMPLETE;
 			header ("Location: {$_SESSION[self::SESSION][self::LANDING_PAGE]}");
 			exit;
@@ -295,6 +287,7 @@ class OAuthNegotiator {
 				$this->ready = true;
 				$this->apiUrl = (isset($_SESSION[self::SESSION][self::API_URL]) ? $_SESSION[self::SESSION][self::API_URL] : null);
 				$this->token = (isset($_SESSION[self::SESSION][self::TOKEN]) ? $_SESSION[self::SESSION][self::TOKEN] : null);
+				$this->isApiToken = (isset($_SESSION[self::SESSION][self::IS_API_TOKEN]) ? $_SESSION[self::SESSION][self::IS_API_TOKEN] : false);
 				$this->user = (isset($_SESSION[self::SESSION][self::USER]) ? $_SESSION[self::SESSION][self::USER] : null);
 				$this->error = (isset($_SESSION[self::SESSION][self::ERROR]) ? $_SESSION[self::SESSION][self::ERROR] : null);
 				unset($_SESSION[self::SESSION]);
@@ -321,7 +314,7 @@ class OAuthNegotiator {
 	 **/
 	public function isIdentityToken() {
 		if ($this->ready) {
-			return !empty($this->token) && !is_array($this->user);
+			return !empty($this->token);
 		} else {
 			return false;
 		}
@@ -332,7 +325,7 @@ class OAuthNegotiator {
 	 **/
 	public function isAPIToken() {
 		if ($this->ready) {
-			return !empty($this->token) && is_array($this->user);
+			return $this->isApiToken;
 		} else {
 			return false;
 		}
@@ -359,18 +352,7 @@ class OAuthNegotiator {
 			return false;
 		}
 	}
-	
-	/**
-	 * @return array|boolean|null Associative array (if any) of user profile if OAuth negotiation is complete (FALSE if onging)
-	 **/
-	public function getUser() {
-		if ($this->ready) {
-			return $this->user;
-		} else {
-			return false;
-		}
-	}
-	
+		
 	/**
 	 * @return string|boolean|null Error (if any) that ended the OAuth negotiation (FALSE if negotiation is ongoing)
 	 **/

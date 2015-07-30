@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f4c17b39ef60ce35d2d84da84e22383e",
+    "hash": "17d057e92f8e6fca73e051b676a1de96",
     "packages": [
         {
             "name": "educoder/pest",
