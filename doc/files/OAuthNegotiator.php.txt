@@ -1,4 +1,6 @@
 <?php
+
+/* OAuthNegotiator and related classes */
 	
 /**
  * Conduct negotiations with Canvas for an OAuth token
@@ -82,15 +84,27 @@ class OAuthNegotiator {
 	/**
 	 * Construct OAuthNegotiator to start (or continue) OAuth authentication negotiations
 	 *
-	 * @param string $OAuthEndpoint optional URI of the OAuth authentication endpoint (e.g. 'https://<canvas-install-url>/login/oauth2') -- REQUIRED on first instantiation
-	 * @param string $clientId optional A unique client ID for the application requesting authentication (usually some terrible hash or serial number) -- REQUIRED on first instantiation
-	 * @param string $clientSecret optional A shared secret key between this application and the OAuth server -- REQUIRED on first instantiation
-	 * @param string $landingPage optional URI to land at after OAuth is negotiated (defaults to $_SERVER[PHP_SELF])
-	 * @param string $purpose optional How this authentication token will be used (defaults to $_SERVER[PHP_SELF])
-	 * @param string $APIEndpoint optional URI of the API endpoint (e.g. 'https://<canvas-install-url>/api/vi', defaults to str_replace('/login/oauth2', '/api/v1', $OAuthEndpoint))
-	 * @param string $scopes optional The scope of this authentication (defaults to API token request)
-	 * @param string $responseType optional Type of response expected from OAuth server (defaults to 'code')
-	 * @param string $redirectUri optional URI to handle OAuth server response (defaults to $_SERVER[PHP_SELF])
+	 * @param string $OAuthEndpoint (Optional) URI of the OAuth authentication
+	 *		endpoint (e.g. 'https://<canvas-install-url>/login/oauth2') -- *required*
+	 *		on first instantiation
+	 * @param string $clientId (Optional) A unique client ID for the application
+	 *		requesting authentication (usually some terrible hash or serial number) --
+	 *		*required* on first instantiation
+	 * @param string $clientSecret (Optional) A shared secret key between this
+	 *		application and the OAuth server -- *required* on first instantiation
+	 * @param string $landingPage (Optional) URI to land at after OAuth is negotiated
+	 *		(defaults to $_SERVER[PHP_SELF])
+	 * @param string $purpose (Optional) How this authentication token will be used
+	 *		(defaults to $_SERVER[PHP_SELF])
+	 * @param string $APIEndpoint (Optional) URI of the API endpoint (e.g.
+	 *		'https://<canvas-install-url>/api/vi', defaults to
+	 *		`str_replace('/login/oauth2', '/api/v1', $OAuthEndpoint)`)
+	 * @param string $scopes (Optional) The scope of this authentication (defaults
+	 *		to API token request)
+	 * @param string $responseType (Optional) Type of response expected from OAuth
+	 *		server (defaults to 'code')
+	 * @param string $redirectUri (Optional) URI to handle OAuth server response
+	 *		(defaults to $_SERVER[PHP_SELF])
 	 *
 	 * @return void
 	 *
@@ -100,7 +114,7 @@ class OAuthNegotiator {
 	 *
 	 * @throws OAuthNegotiator_Exception STATE_MISMATCH if $_REQUEST[state] does not align with $_SESSION[SESSION][STATE]
 	 **/
-	public function __construct($OAuthEndpoint, $clientId, $clientSecret, $landingPage = false, $purpose = null, $APIEndpoint = false, $scopes = self::DEFAULT_SCOPE, $responseType = 'code', $redirectURI = null) {
+	public function __construct($OAuthEndpoint = null, $clientId = null, $clientSecret = null, $landingPage = false, $purpose = null, $APIEndpoint = false, $scopes = self::DEFAULT_SCOPE, $responseType = 'code', $redirectURI = null) {
 		
 		/* start our session (if it has not already been started) */
 		switch (session_status()) {

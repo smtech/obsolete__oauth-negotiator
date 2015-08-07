@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1582310872"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-325876991"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1582310872" class="accordion-body collapse in">
+            <div id="namespace-325876991" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -1061,7 +1061,7 @@
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$OAuthEndpoint</span>, string  <span class="argument">$clientId</span>, string  <span class="argument">$clientSecret</span>, string  <span class="argument">$landingPage = false</span>, string  <span class="argument">$purpose = null</span>, string  <span class="argument">$APIEndpoint = false</span>, string  <span class="argument">$scopes = self::DEFAULT_SCOPE</span>, string  <span class="argument">$responseType = &#039;code&#039;</span>,   <span class="argument">$redirectURI = null</span>) : void</pre>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$OAuthEndpoint = null</span>, string  <span class="argument">$clientId = null</span>, string  <span class="argument">$clientSecret = null</span>, string  <span class="argument">$landingPage = false</span>, string  <span class="argument">$purpose = null</span>, string  <span class="argument">$APIEndpoint = false</span>, string  <span class="argument">$scopes = self::DEFAULT_SCOPE</span>, string  <span class="argument">$responseType = &#039;code&#039;</span>,   <span class="argument">$redirectURI = null</span>) : void</pre>
                 <p><em>Construct OAuthNegotiator to start (or continue) OAuth authentication negotiations</em></p>
                 
 
@@ -1070,42 +1070,53 @@
                                                     <tr>
                                 <td>string</td>
                                 <td>$OAuthEndpoint </td>
-                                <td><p>optional URI of the OAuth authentication endpoint (e.g. 'https://<canvas-install-url>/login/oauth2') -- REQUIRED on first instantiation</p></td>
+                                <td><p>(Optional) URI of the OAuth authentication
+endpoint (e.g. 'https://<canvas-install-url>/login/oauth2') -- <em>required</em>
+on first instantiation</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
                                 <td>$clientId </td>
-                                <td><p>optional A unique client ID for the application requesting authentication (usually some terrible hash or serial number) -- REQUIRED on first instantiation</p></td>
+                                <td><p>(Optional) A unique client ID for the application
+requesting authentication (usually some terrible hash or serial number) --
+<em>required</em> on first instantiation</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
                                 <td>$clientSecret </td>
-                                <td><p>optional A shared secret key between this application and the OAuth server -- REQUIRED on first instantiation</p></td>
+                                <td><p>(Optional) A shared secret key between this
+application and the OAuth server -- <em>required</em> on first instantiation</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
                                 <td>$landingPage </td>
-                                <td><p>optional URI to land at after OAuth is negotiated (defaults to $_SERVER[PHP_SELF])</p></td>
+                                <td><p>(Optional) URI to land at after OAuth is negotiated
+(defaults to $_SERVER[PHP_SELF])</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
                                 <td>$purpose </td>
-                                <td><p>optional How this authentication token will be used (defaults to $_SERVER[PHP_SELF])</p></td>
+                                <td><p>(Optional) How this authentication token will be used
+(defaults to $_SERVER[PHP_SELF])</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
                                 <td>$APIEndpoint </td>
-                                <td><p>optional URI of the API endpoint (e.g. 'https://<canvas-install-url>/api/vi', defaults to str_replace('/login/oauth2', '/api/v1', $OAuthEndpoint))</p></td>
+                                <td><p>(Optional) URI of the API endpoint (e.g.
+'https://<canvas-install-url>/api/vi', defaults to
+<code>str_replace('/login/oauth2', '/api/v1', $OAuthEndpoint)</code>)</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
                                 <td>$scopes </td>
-                                <td><p>optional The scope of this authentication (defaults to API token request)</p></td>
+                                <td><p>(Optional) The scope of this authentication (defaults
+to API token request)</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
                                 <td>$responseType </td>
-                                <td><p>optional Type of response expected from OAuth server (defaults to 'code')</p></td>
+                                <td><p>(Optional) Type of response expected from OAuth
+server (defaults to 'code')</p></td>
                             </tr>
                                                     <tr>
                                 <td></td>
@@ -1626,7 +1637,7 @@
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
                     on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in phar:///Users/sethbattis/Dropbox/Library/Scripts/phpdocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-July 30th, 2015 at 04:00.
+August 7th, 2015 at 16:40.
                 </section>
             </section>
         </section>
