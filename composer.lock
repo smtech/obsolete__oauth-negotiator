@@ -4,20 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "17d057e92f8e6fca73e051b676a1de96",
+    "hash": "ce4153ca567881ccd87e30e4c2c7f1a5",
+    "content-hash": "736c10370768d2683e9b3a743f876f1d",
     "packages": [
         {
-            "name": "educoder/pest",
+            "name": "battis/educoder-pest-fork",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/educoder/pest.git",
-                "reference": "fcb539e03c03bc925b93004097a268e6fd484dd8"
+                "url": "https://github.com/battis/pest.git",
+                "reference": "b12e9056465e2894bd698eede139a03b91723545"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/educoder/pest/zipball/fcb539e03c03bc925b93004097a268e6fd484dd8",
-                "reference": "fcb539e03c03bc925b93004097a268e6fd484dd8",
+                "url": "https://api.github.com/repos/battis/pest/zipball/b12e9056465e2894bd698eede139a03b91723545",
+                "reference": "b12e9056465e2894bd698eede139a03b91723545",
                 "shasum": ""
             },
             "require": {
@@ -46,14 +47,14 @@
             ],
             "description": "A proper REST client for PHP.",
             "homepage": "https://github.com/educoder/pest",
-            "time": "2014-09-02 15:51:33"
+            "time": "2016-02-15 19:52:14"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "educoder/pest": 20
+        "battis/educoder-pest-fork": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
