@@ -1,5 +1,7 @@
 # OAuthNegotiator
 
+[![Latest Version](https://img.shields.io/packagist/v/smtech/oauth-negotiator.svg)](https://packagist.org/packages/smtech/oauth-negotiator)
+
 I find it difficult to wrap my head around negotiating for OAuth tokens -- and I would prefer not to have to think about it.
 This is particularly focused on negotiating with _Instructure Canvas_ for OAuth tokens, to be sure.
 
