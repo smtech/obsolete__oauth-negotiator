@@ -1,3 +1,7 @@
+# Obsolete
+
+Abandoned in favor of [smtech/oauth2-canvaslms](https://github.com/smtech/oauth2-canvaslms), which extends the PHP League's excellent OAuth2 Client.
+
 # OAuthNegotiator
 
 [![Latest Version](https://img.shields.io/packagist/v/smtech/oauth-negotiator.svg)](https://packagist.org/packages/smtech/oauth-negotiator)
